@@ -11,6 +11,10 @@ package nl.tue.ooad;
  */
 public class EntertainmentSystem extends javax.swing.JFrame {
 
+    Recorder recorder;
+    Tuner tuner;
+    Display display;
+    
     /**
      * Creates new form EntertainmentSystem
      */
@@ -27,21 +31,132 @@ public class EntertainmentSystem extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        displayPanel = new javax.swing.JPanel();
+        onButton = new javax.swing.JButton();
+        offButton = new javax.swing.JButton();
+        tunerPanel = new javax.swing.JPanel();
+        channelSelection = new javax.swing.JComboBox<>();
+        channelSelectLabel = new javax.swing.JLabel();
+        programGuidePanel = new javax.swing.JPanel();
+        recorderPanel = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        displayPanel.setBackground(new java.awt.Color(255, 102, 102));
+
+        onButton.setText("ON");
+        onButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onButtonActionPerformed(evt);
+            }
+        });
+
+        offButton.setText("OFF");
+
+        javax.swing.GroupLayout displayPanelLayout = new javax.swing.GroupLayout(displayPanel);
+        displayPanel.setLayout(displayPanelLayout);
+        displayPanelLayout.setHorizontalGroup(
+            displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(displayPanelLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(onButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(offButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        displayPanelLayout.setVerticalGroup(
+            displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(displayPanelLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(onButton)
+                    .addComponent(offButton))
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
+
+        tunerPanel.setBackground(new java.awt.Color(153, 255, 153));
+
+        channelSelection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        channelSelectLabel.setText("Select Channel");
+
+        programGuidePanel.setBackground(new java.awt.Color(255, 255, 153));
+
+        javax.swing.GroupLayout programGuidePanelLayout = new javax.swing.GroupLayout(programGuidePanel);
+        programGuidePanel.setLayout(programGuidePanelLayout);
+        programGuidePanelLayout.setHorizontalGroup(
+            programGuidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        programGuidePanelLayout.setVerticalGroup(
+            programGuidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout tunerPanelLayout = new javax.swing.GroupLayout(tunerPanel);
+        tunerPanel.setLayout(tunerPanelLayout);
+        tunerPanelLayout.setHorizontalGroup(
+            tunerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tunerPanelLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(channelSelectLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(channelSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(469, Short.MAX_VALUE))
+            .addGroup(tunerPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(programGuidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        tunerPanelLayout.setVerticalGroup(
+            tunerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tunerPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(tunerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(channelSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(channelSelectLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(programGuidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        recorderPanel.setBackground(new java.awt.Color(102, 204, 255));
+
+        javax.swing.GroupLayout recorderPanelLayout = new javax.swing.GroupLayout(recorderPanel);
+        recorderPanel.setLayout(recorderPanelLayout);
+        recorderPanelLayout.setHorizontalGroup(
+            recorderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        recorderPanelLayout.setVerticalGroup(
+            recorderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 175, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(displayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(tunerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(recorderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(displayPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tunerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(recorderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void onButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_onButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +194,13 @@ public class EntertainmentSystem extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel channelSelectLabel;
+    private javax.swing.JComboBox<String> channelSelection;
+    private javax.swing.JPanel displayPanel;
+    private javax.swing.JButton offButton;
+    private javax.swing.JButton onButton;
+    private javax.swing.JPanel programGuidePanel;
+    private javax.swing.JPanel recorderPanel;
+    private javax.swing.JPanel tunerPanel;
     // End of variables declaration//GEN-END:variables
 }
