@@ -7,6 +7,7 @@ package nl.tue.ooad;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JPanel;
 
 /**
  *
@@ -16,10 +17,12 @@ public class Recorder implements FrameConsumer, FrameProducer {
     
     PlayList playList;
     List<Program> plannedRecordings;
+    JPanel recorderPanel;
 
-    public Recorder() {
+    public Recorder(JPanel recorderPanel) {
         plannedRecordings = new ArrayList<>();
         playList = new PlayList();
+        this.recorderPanel = recorderPanel;
     }
     
     void cancelPlannedRecording(Program program) {

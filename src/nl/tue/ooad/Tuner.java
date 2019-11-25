@@ -5,6 +5,8 @@
  */
 package nl.tue.ooad;
 
+import javax.swing.JPanel;
+
 /**
  *
  * @author s132054
@@ -13,6 +15,14 @@ public class Tuner implements FrameProducer {
     
     int channel;
     ProgramGuide guide;
+    JPanel tunerPanel;
+
+    public Tuner(JPanel tunerPanel, JPanel programGuidePanel) {
+        this.tunerPanel = tunerPanel;
+        guide = new ProgramGuide(programGuidePanel);
+    }
+    
+    
     
     ProgramGuide getProgramGuide() {
         return guide;

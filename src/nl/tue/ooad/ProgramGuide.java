@@ -7,6 +7,7 @@ package nl.tue.ooad;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JPanel;
 
 /**
  *
@@ -15,9 +16,11 @@ import java.util.List;
 public class ProgramGuide {
     
     List<Program> programs;
+    JPanel programGuidePanel;
 
-    public ProgramGuide() {
+    public ProgramGuide(JPanel programGuidePanel) {
         programs = new ArrayList<>();
+        this.programGuidePanel = programGuidePanel;
     }
     
     void update() {

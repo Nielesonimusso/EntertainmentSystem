@@ -5,11 +5,19 @@
  */
 package nl.tue.ooad;
 
+import javax.swing.JPanel;
+
 /**
  *
  * @author s132054
  */
 public class Display implements FrameConsumer {
+
+    JPanel displayPanel;
+    
+    public Display(JPanel displayPanel) {
+        this.displayPanel = displayPanel;
+    }
     
     void turnOff() {
         

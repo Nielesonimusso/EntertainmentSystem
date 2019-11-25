@@ -20,6 +20,12 @@ public class EntertainmentSystem extends javax.swing.JFrame {
      */
     public EntertainmentSystem() {
         initComponents();
+        
+        //initialization of main component classes, passing on reference to their
+        // respective JPanel
+        recorder = new Recorder(recorderPanel);
+        tuner = new Tuner(tunerPanel, programGuidePanel);
+        display = new Display(displayPanel);
     }
 
     /**
