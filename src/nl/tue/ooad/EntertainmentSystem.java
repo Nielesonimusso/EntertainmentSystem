@@ -203,4 +203,25 @@ public class EntertainmentSystem extends javax.swing.JFrame {
     private javax.swing.JPanel recorderPanel;
     private javax.swing.JPanel tunerPanel;
     // End of variables declaration//GEN-END:variables
+
+    void play() {
+        
+    }
+    
+    void pause() {
+        
+    }
+    
+    void stop() {
+        
+    }
+    
+    void forward() {
+        
+    }
+    
+    void backward() {
+        
+    }
 }
+

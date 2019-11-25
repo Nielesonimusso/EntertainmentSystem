@@ -18,7 +18,15 @@ public class Display implements FrameConsumer {
     void turnOn() {
         
     }
+    
+    void playFrame() {
+        
+    }
 
+    void pauseFrame() {
+        
+    }
+    
     @Override
     public void consumeStream(StreamFrame stream) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
