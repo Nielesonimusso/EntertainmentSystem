@@ -5,6 +5,9 @@
  */
 package nl.tue.ooad;
 
+import nl.tue.ooad.fake.DisplayTester;
+import nl.tue.ooad.fake.TFrameProducer;
+
 /**
  *
  * @author s132054
@@ -26,6 +29,8 @@ public class EntertainmentSystem extends javax.swing.JFrame {
         recorder = new Recorder(recorderPanel);
         tuner = new Tuner(tunerPanel, programGuidePanel);
         display = new Display(displayPanel);
+        
+        testDisplay();
     }
 
     /**
@@ -228,6 +233,12 @@ public class EntertainmentSystem extends javax.swing.JFrame {
     
     void backward() {
         
+    }
+    
+    
+    void testDisplay(){
+        DisplayTester tester = new DisplayTester();
+        tester.test();        
     }
 }
 
