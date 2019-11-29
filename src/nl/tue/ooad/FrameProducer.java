@@ -5,8 +5,6 @@
  */
 package nl.tue.ooad;
 
-import java.util.concurrent.BlockingQueue;
-
 /**
  *
  * @author s132054
@@ -14,7 +12,5 @@ import java.util.concurrent.BlockingQueue;
 public interface FrameProducer {
     
     StreamFrame produceStream();
-    
-    BlockingQueue<StreamFrame> getStreamQueue();
     
 }

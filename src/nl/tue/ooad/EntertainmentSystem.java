@@ -24,7 +24,7 @@ public class EntertainmentSystem extends javax.swing.JFrame {
         //initialization of main component classes, passing on reference to their
         // respective JPanel
         recorder = new Recorder(recorderPanel);
-        tuner = new Tuner(tunerPanel, programGuidePanel);
+        tuner = new Tuner(tunerPanel, programJList);
         display = new Display(displayPanel);
     }
 
@@ -44,6 +44,9 @@ public class EntertainmentSystem extends javax.swing.JFrame {
         channelSelection = new javax.swing.JComboBox<>();
         channelSelectLabel = new javax.swing.JLabel();
         programGuidePanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        programJList = new javax.swing.JList<>();
+        programGuideToggleBtn = new javax.swing.JToggleButton();
         recorderPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -82,22 +85,31 @@ public class EntertainmentSystem extends javax.swing.JFrame {
 
         tunerPanel.setBackground(new java.awt.Color(153, 255, 153));
 
-        channelSelection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        channelSelection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
 
         channelSelectLabel.setText("Select Channel");
 
         programGuidePanel.setBackground(new java.awt.Color(255, 255, 153));
 
+        jScrollPane1.setViewportView(programJList);
+
         javax.swing.GroupLayout programGuidePanelLayout = new javax.swing.GroupLayout(programGuidePanel);
         programGuidePanel.setLayout(programGuidePanelLayout);
         programGuidePanelLayout.setHorizontalGroup(
             programGuidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
         );
         programGuidePanelLayout.setVerticalGroup(
             programGuidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
+
+        programGuideToggleBtn.setText("Program Guide");
+        programGuideToggleBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                programGuideToggleBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout tunerPanelLayout = new javax.swing.GroupLayout(tunerPanel);
         tunerPanel.setLayout(tunerPanelLayout);
@@ -108,7 +120,9 @@ public class EntertainmentSystem extends javax.swing.JFrame {
                 .addComponent(channelSelectLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(channelSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(469, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(programGuideToggleBtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(tunerPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(programGuidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -120,11 +134,14 @@ public class EntertainmentSystem extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(tunerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(channelSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(channelSelectLabel))
+                    .addComponent(channelSelectLabel)
+                    .addComponent(programGuideToggleBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(programGuidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        programGuideToggleBtn.getAccessibleContext().setAccessibleName("");
 
         recorderPanel.setBackground(new java.awt.Color(102, 204, 255));
 
@@ -136,7 +153,7 @@ public class EntertainmentSystem extends javax.swing.JFrame {
         );
         recorderPanelLayout.setVerticalGroup(
             recorderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 175, Short.MAX_VALUE)
+            .addGap(0, 142, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -163,6 +180,17 @@ public class EntertainmentSystem extends javax.swing.JFrame {
     private void onButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_onButtonActionPerformed
+
+    private void programGuideToggleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_programGuideToggleBtnActionPerformed
+        if(programGuideToggleBtn.isSelected()) {
+            jScrollPane1.setVisible(true);
+            ProgramGuide programGuide = new ProgramGuide(programJList);    
+            programGuide.update();
+        } else{
+            jScrollPane1.setVisible(false);
+        }
+              
+    }//GEN-LAST:event_programGuideToggleBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -203,9 +231,12 @@ public class EntertainmentSystem extends javax.swing.JFrame {
     private javax.swing.JLabel channelSelectLabel;
     private javax.swing.JComboBox<String> channelSelection;
     private javax.swing.JPanel displayPanel;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton offButton;
     private javax.swing.JButton onButton;
     private javax.swing.JPanel programGuidePanel;
+    private javax.swing.JToggleButton programGuideToggleBtn;
+    private javax.swing.JList<String> programJList;
     private javax.swing.JPanel recorderPanel;
     private javax.swing.JPanel tunerPanel;
     // End of variables declaration//GEN-END:variables

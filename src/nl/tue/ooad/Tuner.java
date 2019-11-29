@@ -5,6 +5,7 @@
  */
 package nl.tue.ooad;
 
+import javax.swing.JList;
 import javax.swing.JPanel;
 
 /**
@@ -17,9 +18,9 @@ public class Tuner implements FrameProducer {
     ProgramGuide guide;
     JPanel tunerPanel;
 
-    public Tuner(JPanel tunerPanel, JPanel programGuidePanel) {
+    public Tuner(JPanel tunerPanel, JList programJList) {
         this.tunerPanel = tunerPanel;
-        guide = new ProgramGuide(programGuidePanel);
+        guide = new ProgramGuide(programJList);
     }
     
     

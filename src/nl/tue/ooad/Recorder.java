@@ -7,7 +7,6 @@ package nl.tue.ooad;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.BlockingQueue;
 import javax.swing.JPanel;
 
 /**
@@ -69,11 +68,6 @@ public class Recorder implements FrameConsumer, FrameProducer {
 
     @Override
     public StreamFrame produceStream() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public BlockingQueue<StreamFrame> getStreamQueue() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
