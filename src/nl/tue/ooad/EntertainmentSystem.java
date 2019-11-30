@@ -43,8 +43,7 @@ public class EntertainmentSystem extends javax.swing.JFrame {
     private void initComponents() {
 
         displayPanel = new javax.swing.JPanel();
-        onButton = new javax.swing.JButton();
-        offButton = new javax.swing.JButton();
+        playButton = new javax.swing.JButton();
         tunerPanel = new javax.swing.JPanel();
         channelSelection = new javax.swing.JComboBox<>();
         channelSelectLabel = new javax.swing.JLabel();
@@ -55,34 +54,28 @@ public class EntertainmentSystem extends javax.swing.JFrame {
 
         displayPanel.setBackground(new java.awt.Color(255, 102, 102));
 
-        onButton.setText("ON");
-        onButton.addActionListener(new java.awt.event.ActionListener() {
+        playButton.setText("Play");
+        playButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onButtonActionPerformed(evt);
+                playButtonActionPerformed(evt);
             }
         });
-
-        offButton.setText("OFF");
 
         javax.swing.GroupLayout displayPanelLayout = new javax.swing.GroupLayout(displayPanel);
         displayPanel.setLayout(displayPanelLayout);
         displayPanelLayout.setHorizontalGroup(
             displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(displayPanelLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(onButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(offButton)
+                .addContainerGap()
+                .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         displayPanelLayout.setVerticalGroup(
             displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(displayPanelLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(onButton)
-                    .addComponent(offButton))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(playButton)
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         tunerPanel.setBackground(new java.awt.Color(153, 255, 153));
@@ -165,9 +158,15 @@ public class EntertainmentSystem extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void onButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_onButtonActionPerformed
+    private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
+        if (playButton.getText().equals("Play")){
+            play();
+            playButton.setText("Pause");
+        } else {
+            pause();
+            playButton.setText("Play");
+        }
+    }//GEN-LAST:event_playButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,19 +207,18 @@ public class EntertainmentSystem extends javax.swing.JFrame {
     private javax.swing.JLabel channelSelectLabel;
     private javax.swing.JComboBox<String> channelSelection;
     private javax.swing.JPanel displayPanel;
-    private javax.swing.JButton offButton;
-    private javax.swing.JButton onButton;
+    private javax.swing.JButton playButton;
     private javax.swing.JPanel programGuidePanel;
     private javax.swing.JPanel recorderPanel;
     private javax.swing.JPanel tunerPanel;
     // End of variables declaration//GEN-END:variables
 
     void play() {
-        
+        display.playStream();
     }
     
     void pause() {
-        
+        display.pauseStream();
     }
     
     void stop() {
@@ -238,7 +236,7 @@ public class EntertainmentSystem extends javax.swing.JFrame {
     
     void testDisplay(){
         DisplayTester tester = new DisplayTester();
-        tester.test();        
+        tester.test(display);        
     }
 }
 

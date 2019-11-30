@@ -11,6 +11,13 @@ package nl.tue.ooad;
  */
 public class StreamFrame {
     
-    //?
+    private byte[] frame;
     
+    public StreamFrame(byte[] frame){
+        this.frame = frame;
+    }
+    
+    public byte[] getFrame(){
+        return frame;
+    }
 }

@@ -7,6 +7,8 @@ package nl.tue.ooad.fake;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import nl.tue.ooad.Display;
+import nl.tue.ooad.StreamFrame;
 
 /**
  *
@@ -14,13 +16,16 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class DisplayTester {
     
-    
-    public void test(){
-         BlockingQueue<TStreamFrame> blockingQueue = new LinkedBlockingQueue<TStreamFrame>();
-         Thread fakeProducer = new Thread(new TFrameProducer(blockingQueue));
-         Thread fakeConsumer = new Thread(new TFrameConsumer(blockingQueue));
+  
+    public void test(Display display){
+         BlockingQueue<StreamFrame> blockingQueue = new LinkedBlockingQueue<StreamFrame>();
+         TFrameProducer producer = new TFrameProducer(blockingQueue);
+         display.setProducer(producer);
          
-         fakeProducer.start();
-         fakeConsumer.start();
-    }
+         Thread producerThread = new Thread(producer);
+         Thread displayThread = new Thread(display);
+         
+         producerThread.start();
+         displayThread.start();
+    }   
 }

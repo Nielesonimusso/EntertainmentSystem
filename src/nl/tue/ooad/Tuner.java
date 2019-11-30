@@ -5,6 +5,8 @@
  */
 package nl.tue.ooad;
 
+import java.util.concurrent.BlockingQueue;
+import javax.sound.sampled.AudioFormat;
 import javax.swing.JPanel;
 
 /**
@@ -33,7 +35,12 @@ public class Tuner implements FrameProducer {
     }
 
     @Override
-    public StreamFrame produceStream() {
+    public BlockingQueue<StreamFrame> getStreamFrameQueue() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public AudioFormat getAudioFormat() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

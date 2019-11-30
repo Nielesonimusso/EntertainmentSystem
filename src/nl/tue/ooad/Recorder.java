@@ -7,6 +7,8 @@ package nl.tue.ooad;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.BlockingQueue;
+import javax.sound.sampled.AudioFormat;
 import javax.swing.JPanel;
 
 /**
@@ -62,12 +64,17 @@ public class Recorder implements FrameConsumer, FrameProducer {
     }
 
     @Override
-    public void consumeStream(StreamFrame stream) {
+    public void setProducer(FrameProducer producer) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public StreamFrame produceStream() {
+    public BlockingQueue<StreamFrame> getStreamFrameQueue() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public AudioFormat getAudioFormat() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

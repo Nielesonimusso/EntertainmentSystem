@@ -5,12 +5,16 @@
  */
 package nl.tue.ooad;
 
+import java.util.concurrent.BlockingQueue;
+import javax.sound.sampled.AudioFormat;
+
 /**
  *
  * @author s132054
  */
 public interface FrameProducer {
     
-    StreamFrame produceStream();
+    BlockingQueue<StreamFrame> getStreamFrameQueue();
     
+    AudioFormat getAudioFormat();
 }

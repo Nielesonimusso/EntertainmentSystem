@@ -11,6 +11,6 @@ package nl.tue.ooad;
  */
 public interface FrameConsumer {
     
-    void consumeStream(StreamFrame stream);
+    void setProducer(FrameProducer producer);
     
 }
