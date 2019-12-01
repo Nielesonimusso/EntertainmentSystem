@@ -18,14 +18,12 @@ public class DisplayTester {
     
   
     public void test(Display display){
-         BlockingQueue<StreamFrame> blockingQueue = new LinkedBlockingQueue<StreamFrame>();
-         TFrameProducer producer = new TFrameProducer(blockingQueue);
-         display.setProducer(producer);
-         
-         Thread producerThread = new Thread(producer);
-         Thread displayThread = new Thread(display);
-         
-         producerThread.start();
-         displayThread.start();
+
+        String AUDIO_FILENAME = "JungleAnimalSounds.wav";
+        TFrameProducer producer = new TFrameProducer();
+        producer.configStreamSource(AUDIO_FILENAME);
+        
+        display.setStreamSource(producer.getStreamSource());
+        display.play();
     }   
 }

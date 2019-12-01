@@ -13,7 +13,7 @@ import javax.swing.JPanel;
  *
  * @author s132054
  */
-public class Tuner implements FrameProducer {
+public class Tuner{
     
     int channel;
     ProgramGuide guide;
@@ -34,13 +34,5 @@ public class Tuner implements FrameProducer {
         
     }
 
-    @Override
-    public BlockingQueue<StreamFrame> getStreamFrameQueue() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    @Override
-    public AudioFormat getAudioFormat() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

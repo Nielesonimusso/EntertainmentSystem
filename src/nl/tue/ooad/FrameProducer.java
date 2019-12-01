@@ -5,8 +5,7 @@
  */
 package nl.tue.ooad;
 
-import java.util.concurrent.BlockingQueue;
-import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.Clip;
 
 /**
  *
@@ -14,7 +13,7 @@ import javax.sound.sampled.AudioFormat;
  */
 public interface FrameProducer {
     
-    BlockingQueue<StreamFrame> getStreamFrameQueue();
+    public void configStreamSource(String inputFilename);
     
-    AudioFormat getAudioFormat();
+    public Clip getStreamSource();
 }

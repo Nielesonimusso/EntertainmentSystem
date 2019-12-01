@@ -15,7 +15,7 @@ import javax.swing.JPanel;
  *
  * @author s132054
  */
-public class Recorder implements FrameConsumer, FrameProducer {
+public class Recorder {
     
     PlayList playList;
     List<Program> plannedRecordings;
@@ -61,20 +61,5 @@ public class Recorder implements FrameConsumer, FrameProducer {
     
     void stopRecording() {
         
-    }
-
-    @Override
-    public void setProducer(FrameProducer producer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public BlockingQueue<StreamFrame> getStreamFrameQueue() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public AudioFormat getAudioFormat() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
