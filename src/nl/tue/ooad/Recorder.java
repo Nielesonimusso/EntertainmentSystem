@@ -5,10 +5,8 @@
  */
 package nl.tue.ooad;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.BlockingQueue;
 import javax.sound.sampled.Clip;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -70,11 +68,6 @@ public class Recorder implements FrameConsumer, FrameProducer {
     
     void stopRecording() {
         
-    }
-
-    @Override
-    public void setStreamSource(Clip streamSource) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

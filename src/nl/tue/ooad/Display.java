@@ -28,27 +28,27 @@ public class Display implements FrameConsumer, LineListener {
         this.displayPanel = displayPanel;
         streamSource = null;
         mediaDuration = 0;
+        clipPosition = 0;
     }
 
     
     @Override
     public void setProducer(FrameProducer producer){
         this.producer = producer;
-
     }
     
-    @Override
-    public void setStreamSource(Clip streamSource) {
-        this.streamSource = streamSource;
-        this.streamSource.addLineListener(this);
-        mediaDuration = streamSource.getMicrosecondLength();
-    }
-
     public void configStreamSource(){
         if (producer != null){
-            this.streamSource = producer.getStreamSource();
-            this.streamSource.addLineListener(this);
+            // Stop sound before changing audio to play
+            if (streamSource != null){
+                streamSource.stop();
+                streamSource.drain();
+                streamSource.close();              
+            }
+            streamSource = producer.getStreamSource();
+            streamSource.addLineListener(this);
             mediaDuration = streamSource.getMicrosecondLength();
+            clipPosition = 0;
         }
     }
     
@@ -56,11 +56,7 @@ public class Display implements FrameConsumer, LineListener {
         return streamSource != null;
     }
     
-    public void play(){
-        streamSource.setFramePosition(0);
-        streamSource.start();
-    }
-         
+
     public void playStream() {
         if (streamSource != null){
             streamSource.setMicrosecondPosition(clipPosition);
@@ -94,7 +90,7 @@ public class Display implements FrameConsumer, LineListener {
                 streamSource.close();
                 streamSource = null;
                 configStreamSource();
-                play();
+                playStream();
             } 
         } 
     }
