@@ -45,6 +45,7 @@ public class EntertainmentSystem extends javax.swing.JFrame {
 
         displayPanel = new javax.swing.JPanel();
         playButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         tunerPanel = new javax.swing.JPanel();
         channelSelection = new javax.swing.JComboBox<>();
         channelSelectLabel = new javax.swing.JLabel();
@@ -52,9 +53,11 @@ public class EntertainmentSystem extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         programJList = new javax.swing.JList<>();
         programGuideToggleBtn = new javax.swing.JToggleButton();
+        jLabel2 = new javax.swing.JLabel();
         recorderPanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         recordingJList = new javax.swing.JList<>();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,21 +70,30 @@ public class EntertainmentSystem extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("Display");
+
         javax.swing.GroupLayout displayPanelLayout = new javax.swing.GroupLayout(displayPanel);
         displayPanel.setLayout(displayPanelLayout);
         displayPanelLayout.setHorizontalGroup(
             displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(displayPanelLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(playButton)
+                .addGap(43, 43, 43)
+                .addComponent(playButton, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         displayPanelLayout.setVerticalGroup(
             displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(displayPanelLayout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(playButton)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         tunerPanel.setBackground(new java.awt.Color(153, 255, 153));
@@ -118,6 +130,9 @@ public class EntertainmentSystem extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setText("Tunner");
+
         javax.swing.GroupLayout tunerPanelLayout = new javax.swing.GroupLayout(tunerPanel);
         tunerPanel.setLayout(tunerPanelLayout);
         tunerPanelLayout.setHorizontalGroup(
@@ -129,7 +144,9 @@ public class EntertainmentSystem extends javax.swing.JFrame {
                 .addComponent(channelSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(programGuideToggleBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(21, 21, 21))
             .addGroup(tunerPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(programGuidePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -138,11 +155,14 @@ public class EntertainmentSystem extends javax.swing.JFrame {
         tunerPanelLayout.setVerticalGroup(
             tunerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tunerPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(tunerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(channelSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(channelSelectLabel)
-                    .addComponent(programGuideToggleBtn))
+                .addGroup(tunerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tunerPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(tunerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(channelSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(channelSelectLabel)
+                            .addComponent(programGuideToggleBtn)))
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(programGuidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -154,6 +174,9 @@ public class EntertainmentSystem extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(recordingJList);
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setText("Recorder");
+
         javax.swing.GroupLayout recorderPanelLayout = new javax.swing.GroupLayout(recorderPanel);
         recorderPanel.setLayout(recorderPanelLayout);
         recorderPanelLayout.setHorizontalGroup(
@@ -161,13 +184,19 @@ public class EntertainmentSystem extends javax.swing.JFrame {
             .addGroup(recorderPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(17, 17, 17))
         );
         recorderPanelLayout.setVerticalGroup(
             recorderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(recorderPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                .addGroup(recorderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(recorderPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -204,14 +233,9 @@ public class EntertainmentSystem extends javax.swing.JFrame {
     }//GEN-LAST:event_playButtonActionPerformed
 
     private void programGuideToggleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_programGuideToggleBtnActionPerformed
-        if(programGuideToggleBtn.isSelected()) {
-            jScrollPane1.setVisible(true);
-            ProgramGuide programGuide = new ProgramGuide(programJList);    
-            programGuide.update();
-        } else{ 
-           jScrollPane1.setVisible(false);
-        }
-              
+        jScrollPane1.setVisible(true);
+        ProgramGuide programGuide = new ProgramGuide(programJList);    
+        programGuide.update(programGuideToggleBtn.isSelected());            
     }//GEN-LAST:event_programGuideToggleBtnActionPerformed
 
     private void channelSelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_channelSelectionActionPerformed
@@ -263,6 +287,9 @@ public class EntertainmentSystem extends javax.swing.JFrame {
     private javax.swing.JLabel channelSelectLabel;
     private javax.swing.JComboBox<String> channelSelection;
     private javax.swing.JPanel displayPanel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton playButton;
