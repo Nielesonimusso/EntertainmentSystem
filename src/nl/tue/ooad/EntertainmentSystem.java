@@ -82,6 +82,7 @@ public class EntertainmentSystem extends javax.swing.JFrame {
         );
 
         tunerPanel.setBackground(new java.awt.Color(153, 255, 153));
+        tunerPanel.setMinimumSize(new java.awt.Dimension(500, 500));
 
         channelSelection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
         channelSelection.addActionListener(new java.awt.event.ActionListener() {
@@ -204,8 +205,8 @@ public class EntertainmentSystem extends javax.swing.JFrame {
             jScrollPane1.setVisible(true);
             ProgramGuide programGuide = new ProgramGuide(programJList);    
             programGuide.update();
-        } else{
-            jScrollPane1.setVisible(false);
+        } else{ 
+           jScrollPane1.setVisible(false);
         }
               
     }//GEN-LAST:event_programGuideToggleBtnActionPerformed
