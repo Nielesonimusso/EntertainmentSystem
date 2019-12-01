@@ -26,6 +26,8 @@ public class EntertainmentSystem extends javax.swing.JFrame {
         recorder = new Recorder(recorderPanel);
         tuner = new Tuner(tunerPanel, programJList);
         display = new Display(displayPanel);
+        
+        new Thread(tuner).start();
     }
 
     /**
