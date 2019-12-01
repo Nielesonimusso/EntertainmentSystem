@@ -73,7 +73,7 @@ public class Tuner implements FrameProducer, Runnable {
             if (!nextProgramLoaded) {
                 File nextInputFile = currentChannelIterator.next();
                 System.out.println("Opening program " + nextInputFile.getName() + " on channel " + channel);
-                String filePath = "" + "./" + channel + "/" + nextInputFile.getName();
+                String filePath = "" + "./channels/" + channel + "/" + nextInputFile.getName();
                 System.out.println(filePath);
                 configStreamSource(filePath);
             }
@@ -93,9 +93,9 @@ public class Tuner implements FrameProducer, Runnable {
     public void configStreamSource(String filePath) {
         AudioInputStream audioIn = null;
         try {
-            URL url;
-            url = this.getClass().getClassLoader().getResource(filePath);
-            audioIn = AudioSystem.getAudioInputStream(url);
+            //URL url;
+            //url = this.getClass().getClassLoader().getResource(filePath);
+            audioIn = AudioSystem.getAudioInputStream(new File(filePath));
             streamSource = AudioSystem.getClip();
             streamSource.open(audioIn);
             nextProgramLoaded = true;
