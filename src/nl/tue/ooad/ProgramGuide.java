@@ -25,12 +25,19 @@ public class ProgramGuide {
         this.programJList = programJList;
     }
 
-    void update() {
+    void update(boolean showGuide) {
         readProgramNames();      
-         programJList.setModel(new javax.swing.AbstractListModel<String>() {           
-            public int getSize() { return programs.size(); }
-            public String getElementAt(int i) { return programs.get(i).name; }
-        });
+        if(showGuide){
+            programJList.setModel(new javax.swing.AbstractListModel<String>() {           
+                public int getSize() { return programs.size(); }
+                public String getElementAt(int i) { return programs.get(i).name; }
+            });
+        } else {
+            programJList.setModel(new javax.swing.AbstractListModel<String>() {           
+                public int getSize() { return 0; }
+                public String getElementAt(int i) { return ""; }
+            }); 
+        }
        
     }
 
