@@ -11,6 +11,8 @@ package nl.tue.ooad;
  */
 public class Recording {
     
+    String name;
+    
     void delete() {
         
     }

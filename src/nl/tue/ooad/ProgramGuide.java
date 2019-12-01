@@ -9,10 +9,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -22,34 +18,37 @@ public class ProgramGuide {
 
     List<Program> programs;
     JList programJList;
-    private static final String WORKING_PATH = "./channels/";
+    public static final String WORKING_PATH = "./channels/";
 
     public ProgramGuide(JList programJList) {
-        programs = new ArrayList<>();
+        this.programs = new ArrayList<>();
         this.programJList = programJList;
     }
 
     void update() {
-        ArrayList<String> programNames = readProgramNames();      
+        readProgramNames();      
          programJList.setModel(new javax.swing.AbstractListModel<String>() {           
-            public int getSize() { return programNames.size(); }
-            public String getElementAt(int i) { return programNames.get(i); }
+            public int getSize() { return programs.size(); }
+            public String getElementAt(int i) { return programs.get(i).name; }
         });
        
     }
 
-    private ArrayList<String> readProgramNames() {
+    private void readProgramNames() {
         File handler = new File(WORKING_PATH);
-        ArrayList<String> nameList = new ArrayList<>();
         for(File f :  handler.listFiles()){
             if(f.isDirectory()){
-                String[] tmp = f.list();
-                for(String name : tmp){
-                    nameList.add("ch. " + f.getName() + " - " + name.substring(0, name.lastIndexOf(".")));
+                String[] fileNames = f.list();
+                int i = 1;
+                for(String file : fileNames){
+                    Program p = new Program();
+                    p.name = "ch. " + f.getName() + " - " + file.substring(0, file.lastIndexOf("."));
+                    p.startingTime = i;
+                    p.endTime = i+1;
+                    programs.add(p);
                }
             }
         }
-        return nameList;
     }
 
 }
