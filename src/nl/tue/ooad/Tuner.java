@@ -5,6 +5,7 @@
  */
 package nl.tue.ooad;
 
+import javax.swing.JList;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
@@ -37,9 +38,9 @@ public class Tuner implements FrameProducer, Runnable{
     
     AudioInputStream fileInput;
 
-    public Tuner(JPanel tunerPanel, JPanel programGuidePanel) {
+    public Tuner(JPanel tunerPanel, JList programJList) {
         this.tunerPanel = tunerPanel;
-        guide = new ProgramGuide(programGuidePanel);
+        guide = new ProgramGuide(programJList);
         buffer = new LinkedBlockingDeque<>();
         
         // build list of channel source files based on directory structure
