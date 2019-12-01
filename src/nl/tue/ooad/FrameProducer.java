@@ -5,7 +5,8 @@
  */
 package nl.tue.ooad;
 
-import java.util.concurrent.BlockingQueue;
+import java.io.File;
+import javax.sound.sampled.Clip;
 
 /**
  *
@@ -13,8 +14,8 @@ import java.util.concurrent.BlockingQueue;
  */
 public interface FrameProducer {
     
-    StreamFrame produceStream();
+    public void configStreamSource(String filePath);
     
-    BlockingQueue<StreamFrame> getStreamQueue();
+    public Clip getStreamSource();
     
 }

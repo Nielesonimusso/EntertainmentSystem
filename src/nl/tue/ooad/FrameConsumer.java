@@ -5,12 +5,14 @@
  */
 package nl.tue.ooad;
 
+import javax.sound.sampled.Clip;
+
 /**
  *
  * @author s132054
  */
 public interface FrameConsumer {
     
-    void consumeStream(StreamFrame stream);
+    void setStreamSource(Clip streamSource);
     
 }

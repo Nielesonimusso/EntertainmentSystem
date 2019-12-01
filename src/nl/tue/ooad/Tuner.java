@@ -8,6 +8,7 @@ package nl.tue.ooad;
 import javax.swing.JList;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -18,6 +19,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JPanel;
 
@@ -25,24 +28,23 @@ import javax.swing.JPanel;
  *
  * @author s132054
  */
-public class Tuner implements FrameProducer, Runnable{
-    
+public class Tuner implements FrameProducer, Runnable {
+
     int channel;
+    boolean loadNextProgram = true;
     ProgramGuide guide;
     JPanel tunerPanel;
-    
-    BlockingQueue<StreamFrame> buffer;
-    
+
     Map<Integer, File[]> channels;
     ChannelIterator currentChannelIterator;
-    
+
     AudioInputStream fileInput;
+    Clip streamSource;
 
     public Tuner(JPanel tunerPanel, JList programJList) {
         this.tunerPanel = tunerPanel;
         guide = new ProgramGuide(programJList);
-        buffer = new LinkedBlockingDeque<>();
-        
+
         // build list of channel source files based on directory structure
         channels = new HashMap<>();
         File[] channelDirectories = new File("./channels/").listFiles(File::isDirectory);
@@ -52,15 +54,10 @@ public class Tuner implements FrameProducer, Runnable{
             Arrays.sort(sourceFiles, (File o1, File o2) -> o1.getName().compareTo(o2.getName()));
             channels.put(channelNumber, sourceFiles);
             System.out.println("Channel " + channelNumber + " found");
-            for (File sf: sourceFiles) {
+            for (File sf : sourceFiles) {
                 System.out.println("Program " + sf.getName() + " found");
             }
         }
-    }
-
-    @Override
-    public BlockingQueue<StreamFrame> getStreamQueue() {
-        return buffer;
     }
 
     @Override
@@ -68,58 +65,58 @@ public class Tuner implements FrameProducer, Runnable{
         // set channel at the start (lowest channel)?
         int lowestChannel = channels.keySet().stream().reduce(Integer.MAX_VALUE, (t, u) -> Math.min(t, u));
         setChannel(lowestChannel);
-        
+
         // continuously fill buffer with stream frames from fileInput
-        
         while (!Thread.interrupted()) {
             int lastChannel = channel;
-            
-            try {
-                try {
-                    File nextInputFile = currentChannelIterator.next();
-                    System.out.println("Opening program " + nextInputFile.getName() + " on channel " + channel);
-                    System.out.println("Buffer size: " + buffer.size());
-                    fileInput = AudioSystem.getAudioInputStream(nextInputFile);
-                } catch (UnsupportedAudioFileException ex) {
-                    System.err.println("Invalid audio file at channel " + channel);
-                    ex.printStackTrace();
-                }
 
-                int frameLength = fileInput.getFormat().getFrameSize();
-                byte[] fileBuffer = new byte[frameLength];
-                while (channel == lastChannel && fileInput.available() > frameLength) {
-                    fileInput.read(fileBuffer);
-                    StreamFrame sf = new StreamFrame(Arrays.copyOf(fileBuffer, frameLength));
-                    buffer.add(sf);
-                }
-                // do not care about left-over bytes? 
-                // (either less than one frame, or switching to other channel)
-                fileInput.close();
-                
-            } catch (IOException ex) {
-                System.err.println("IO error while reading file from channel " + channel);
-                ex.printStackTrace();
+            if (loadNextProgram) {
+                File nextInputFile = currentChannelIterator.next();
+                System.out.println("Opening program " + nextInputFile.getName() + " on channel " + channel);
+                String filePath = "" + "./" + channel + "/" + nextInputFile.getName();
+                System.out.println(filePath);
+                configStreamSource(filePath);
             }
         }
     }
-    
-    
+
     ProgramGuide getProgramGuide() {
         return guide;
     }
-    
+
     void setChannel(int channel) {
         this.channel = channel;
         currentChannelIterator = new ChannelIterator(channels.get(channel));
     }
 
     @Override
-    public StreamFrame produceStream() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void configStreamSource(String filePath) {
+        AudioInputStream audioIn = null;
+        try {
+            URL url;
+            url = this.getClass().getClassLoader().getResource(filePath);
+            audioIn = AudioSystem.getAudioInputStream(url);
+            streamSource = AudioSystem.getClip();
+            streamSource.open(audioIn);
+            loadNextProgram = false;
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+            Logger.getLogger(FrameProducer.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                audioIn.close();
+            } catch (IOException ex) {
+                Logger.getLogger(FrameProducer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
-    
+
+    @Override
+    public Clip getStreamSource() {
+        return streamSource;
+    }
+
     class ChannelIterator implements Iterator<File> {
-        
+
         int next = 0;
         File[] channelFiles;
 
@@ -139,6 +136,6 @@ public class Tuner implements FrameProducer, Runnable{
             next %= channelFiles.length;
             return nextFile;
         }
-        
+
     }
 }
