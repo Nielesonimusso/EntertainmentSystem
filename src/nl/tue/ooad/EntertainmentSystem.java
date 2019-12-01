@@ -26,6 +26,7 @@ public class EntertainmentSystem extends javax.swing.JFrame {
         recorder = new Recorder(recorderPanel, recordingJList);
         tuner = new Tuner(tunerPanel, programJList);
         display = new Display(displayPanel);
+        display.setProducer(tuner);
         
         new Thread(tuner).start();
         
@@ -267,7 +268,8 @@ public class EntertainmentSystem extends javax.swing.JFrame {
 
     void play() {
         if (!display.containsStreamSource()){
-            display.setStreamSource(tuner.getStreamSource());
+            display.configStreamSource();
+            //display.setStreamSource(tuner.getStreamSource());
             display.playStream();
         } else {
             display.playStream();        

@@ -13,6 +13,8 @@ import javax.sound.sampled.Clip;
  */
 public interface FrameConsumer {
     
+    void setProducer(FrameProducer producer);
+    
     void setStreamSource(Clip streamSource);
     
 }

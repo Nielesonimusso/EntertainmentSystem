@@ -31,16 +31,27 @@ public class Display implements FrameConsumer, LineListener {
     }
 
     
+    @Override
     public void setProducer(FrameProducer producer){
         this.producer = producer;
+
     }
     
     @Override
     public void setStreamSource(Clip streamSource) {
         this.streamSource = streamSource;
+        this.streamSource.addLineListener(this);
         mediaDuration = streamSource.getMicrosecondLength();
     }
 
+    public void configStreamSource(){
+        if (producer != null){
+            this.streamSource = producer.getStreamSource();
+            this.streamSource.addLineListener(this);
+            mediaDuration = streamSource.getMicrosecondLength();
+        }
+    }
+    
     public boolean containsStreamSource(){
         return streamSource != null;
     }
@@ -50,7 +61,7 @@ public class Display implements FrameConsumer, LineListener {
         streamSource.start();
     }
          
-    void playStream() {
+    public void playStream() {
         if (streamSource != null){
             streamSource.setMicrosecondPosition(clipPosition);
             streamSource.start();
@@ -58,7 +69,7 @@ public class Display implements FrameConsumer, LineListener {
         }
     }
 
-    void pauseStream() {
+    public void pauseStream() {
         if (streamSource != null) {
             clipPosition = streamSource.getMicrosecondPosition();
             streamSource.stop();
@@ -74,7 +85,17 @@ public class Display implements FrameConsumer, LineListener {
             System.out.println("Playback started.");
              
         } else if (type == LineEvent.Type.STOP) {
-            System.out.println("Playback completed.");
-        }
+            System.out.println("Playback paused.");
+            System.out.println(streamSource.getMicrosecondPosition());
+            System.out.println(mediaDuration);
+            if (Math.abs(streamSource.getMicrosecondPosition() - mediaDuration) < 1000){
+                System.out.println("Playback stopped.");
+                streamSource.drain();
+                streamSource.close();
+                streamSource = null;
+                configStreamSource();
+                play();
+            } 
+        } 
     }
 }

@@ -31,7 +31,7 @@ import javax.swing.JPanel;
 public class Tuner implements FrameProducer, Runnable {
 
     int channel;
-    boolean loadNextProgram = true;
+    boolean nextProgramLoaded = true;
     ProgramGuide guide;
     JPanel tunerPanel;
 
@@ -70,7 +70,7 @@ public class Tuner implements FrameProducer, Runnable {
         while (!Thread.interrupted()) {
             int lastChannel = channel;
 
-            if (loadNextProgram) {
+            if (!nextProgramLoaded) {
                 File nextInputFile = currentChannelIterator.next();
                 System.out.println("Opening program " + nextInputFile.getName() + " on channel " + channel);
                 String filePath = "" + "./" + channel + "/" + nextInputFile.getName();
@@ -98,7 +98,8 @@ public class Tuner implements FrameProducer, Runnable {
             audioIn = AudioSystem.getAudioInputStream(url);
             streamSource = AudioSystem.getClip();
             streamSource.open(audioIn);
-            loadNextProgram = false;
+            nextProgramLoaded = true;
+            System.out.println(audioIn.getFormat());
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
             Logger.getLogger(FrameProducer.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -112,9 +113,18 @@ public class Tuner implements FrameProducer, Runnable {
 
     @Override
     public Clip getStreamSource() {
+        nextProgramLoaded = false;
+        while(!nextProgramLoaded){
+            try {
+                Thread.sleep(20);
+            } catch (InterruptedException ie) {
+                Thread.currentThread().interrupt();
+            }
+        }
+        //
         return streamSource;
     }
-
+    
     class ChannelIterator implements Iterator<File> {
 
         int next = 0;
