@@ -5,6 +5,8 @@
  */
 package nl.tue.ooad;
 
+import javax.swing.JComboBox;
+
 /**
  *
  * @author s132054
@@ -213,7 +215,13 @@ public class EntertainmentSystem extends javax.swing.JFrame {
     }//GEN-LAST:event_programGuideToggleBtnActionPerformed
 
     private void channelSelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_channelSelectionActionPerformed
-        // TODO add your handling code here:  
+        // TODO add your handling code here:
+        JComboBox comboBox = (JComboBox)evt.getSource();
+        String channel = (String) comboBox.getSelectedItem();
+        System.out.println(channel);
+        tuner.setChannel(Integer.valueOf(channel));
+        display.configStreamSource();
+        display.playStream();
     }//GEN-LAST:event_channelSelectionActionPerformed
 
     /**
@@ -269,11 +277,8 @@ public class EntertainmentSystem extends javax.swing.JFrame {
     void play() {
         if (!display.containsStreamSource()){
             display.configStreamSource();
-            //display.setStreamSource(tuner.getStreamSource());
-            display.playStream();
-        } else {
-            display.playStream();        
         }
+        display.playStream();
     }
     
     void pause() {
